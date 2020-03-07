@@ -1,6 +1,6 @@
-const store = require('../../../store/user')
+const store = require('../../../store/userType')
 
-function addUser(data) {
+function addUserType(data) {
     return new Promise((resolve, reject) => {
         if(!data){
             reject('Dato invalido')
@@ -10,11 +10,11 @@ function addUser(data) {
     })
 }
 
-function listUser() {
+function listUserType() {
     return store.list()
 }
 
-function getUser(dataSearh) {
+function getUserType(dataSearh) {
     return new Promise( async (resolve, reject) => {
         if(!dataSearh ){
             reject('Dato invalido')
@@ -24,7 +24,7 @@ function getUser(dataSearh) {
     })
 }
 
-function updateUser(dataSearh, data) {
+function updateUserType(dataSearh, data) {
     return new Promise( async (resolve, reject) => {
         if(!dataSearh || !data){
             reject('Dato invalido')
@@ -34,14 +34,14 @@ function updateUser(dataSearh, data) {
     })
 }
 
-function removeUser(dataSearh) {
+function removeUserType(dataSearh) {
     return store.remove(dataSearh)
 }
 
 module.exports = {
-    addUser,
-    listUser,
-    updateUser,
-    getUser,
-    removeUser
+    addUserType,
+    listUserType,
+    updateUserType,
+    getUserType,
+    removeUserType
 }
