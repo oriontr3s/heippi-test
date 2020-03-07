@@ -18,8 +18,6 @@ async function get(dataSearch) {
 }
 
 async function update(dataSearch, data) {
-    console.log(dataSearch)
-    console.log(data)
     const foundUser = await model.findOne({
         _id: dataSearch
     })
