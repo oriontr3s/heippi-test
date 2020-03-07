@@ -10,6 +10,7 @@ const patient = require('./components/patient/network')
 const observation = require('./components/observation/network')
 const medicalRecord = require('./components/medicalRecord/network')
 const hospital = require('./components/hospital/network')
+const doctor = require('./components/doctor/network')
 
 const app = express()
 const db = require('../store/db')
@@ -22,6 +23,7 @@ app.use('/api/patient', patient)
 app.use('/api/observation', observation)
 app.use('/api/medicalRecord', medicalRecord)
 app.use('/api/hospital', hospital)
+app.use('/api/doctor', doctor)
 
 db(config.db.dbUrl)
 
