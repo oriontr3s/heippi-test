@@ -1,17 +1,17 @@
-const Model = require('../api/components/user/model')
+const model = require('../api/components/user/model')
 
 async function add(data) {
-    const user = new Model(data)
+    const user = new model(data)
     return await user.save()
 }
 
 async function list() {
-    const users = await Model.find()
+    const users = await model.find()
     return users
 }
 
 async function get(dataSearch) {
-    const foundUser = await Model.findOne({
+    const foundUser = await model.findOne({
         _id: dataSearch
     })
     return foundUser
@@ -20,7 +20,7 @@ async function get(dataSearch) {
 async function update(dataSearch, data) {
     console.log(dataSearch)
     console.log(data)
-    const foundUser = await Model.findOne({
+    const foundUser = await model.findOne({
         _id: dataSearch
     })
     if(data.userName) {
@@ -38,8 +38,10 @@ async function update(dataSearch, data) {
     return await foundUser.save()
 }
 
-function remove(dataSearch) {
-
+async function remove(dataSearch) {
+    return model.deleteOne({
+        _id: dataSearch
+    })
 }
 
 module.exports = {

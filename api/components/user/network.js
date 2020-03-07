@@ -9,6 +9,7 @@ router.post('/', addUser)
 router.put('/:id', updateUser)
 router.get('/:id', getUser)
 router.get('/', listUser)
+router.delete('/:id', removeUser)
 
 function addUser (req, res) {
     controller.addUser(req.body)
@@ -47,6 +48,16 @@ function getUser (req, res) {
         })
         .catch((err) => {
             response.error(req, res, err.message, 500)
+        });
+}
+
+function removeUser( req , res) {
+    controller.removeUser(req.params.id)
+        .then((user) => {
+            response.success(req, res, user, 200)
+        })
+        .catch((err) => {
+            response.error(req, res, 'Error Interno', 500)
         });
 }
 
