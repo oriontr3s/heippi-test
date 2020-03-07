@@ -3,6 +3,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const user = new Schema({
+    userType: {
+        type: Schema.ObjectId,
+        required: true,
+        ref: 'UserType'
+    },
     userName: {
         type: String,
         required: true

@@ -5,16 +5,32 @@ async function add(data) {
     return await user.save()
 }
 
-async function list() {
-    const users = await model.find()
-    return users
+function list() {
+    return new Promise ((resolve, reject) => {
+        model.find()
+            .populate('userType')
+            .exec((error, populated) => {
+                if(error){
+                    reject(error)
+                    return false
+                }
+                resolve(populated)
+            })
+    })
 }
 
-async function get(dataSearch) {
-    const foundUser = await model.findOne({
-        _id: dataSearch
-    })
-    return foundUser
+function get(dataSearch) {
+    return new Promise ((resolve, reject) => {
+        model.findOne({ _id: dataSearch })
+            .populate('userType')
+            .exec((error, populated) => {
+                if(error){
+                    reject(error)
+                    return false
+                }
+                resolve(populated)
+            })
+    })    
 }
 
 async function update(dataSearch, data) {
