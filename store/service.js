@@ -1,4 +1,4 @@
-const model = require('../api/components/userType/model')
+const model = require('../api/components/service/model')
 
 async function add(data) {
     const user = new model(data)
@@ -26,7 +26,7 @@ async function update(dataSearch, data) {
     if(data.name) {
         foundUser.name = data.name
     }
-    
+
     return await foundUser.save()
 }
 
