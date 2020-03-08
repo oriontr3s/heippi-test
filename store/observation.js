@@ -6,15 +6,33 @@ async function add(data) {
 }
 
 async function list() {
-    const users = await model.find()
-    return users
+    return new Promise ((resolve, reject) => {
+        model.find()
+            .populate('medicalRecord')
+            .populate('doctor')
+            .exec((error, populated) => {
+                if(error){
+                    reject(error)
+                    return false
+                }
+                resolve(populated)
+            })
+    })
 }
 
 async function get(dataSearch) {
-    const foundUser = await model.findOne({
-        _id: dataSearch
+    return new Promise ((resolve, reject) => {
+        model.findOne({ _id: dataSearch })
+            .populate('medicalRecord')
+            .populate('doctor')
+            .exec((error, populated) => {
+                if(error){
+                    reject(error)
+                    return false
+                }
+                resolve(populated)
+            })
     })
-    return foundUser
 }
 
 async function update(dataSearch, data) {
